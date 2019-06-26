@@ -15,7 +15,7 @@ module.exports = {
                 .setColor('#ffffff')
                 .setAuthor('Away Moderation', 'https://i.imgur.com/iQiy4KE.png', 'https://awaybot.me')
                 .setThumbnail('https://i.imgur.com/iQiy4KE.png')
-                .addField('**Away Purpose:**', 'Away is an open source state of the art Discord Moderation bot developed for Discord\'s Hack Week.')
+                .addField('**Away Purpose:**', 'Away is an open source state of the art Discord Moderation bot developed for Discord Hack Week.')
                 .addField('**Server Information:**', 'Server ID: ' + guildInformation.id + '\nPrefix: ' + guildInformation.prefix)
                 .addField('**Commands:**', userCommands)
                 .addField('**Admin Commands:**', adminCommands)
