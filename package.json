@@ -1,0 +1,25 @@
+{
+  "name": "away",
+  "version": "1.0.0",
+  "description": "Away is an open source state of the art Discord Moderation bot developed for Discord's Hack Week.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanhuellen/Away.git"
+  },
+  "keywords": [
+    "away"
+  ],
+  "author": "Ryan Huellen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ryanhuellen/Away/issues"
+  },
+  "homepage": "https://github.com/ryanhuellen/Away#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1"
+  }
+}

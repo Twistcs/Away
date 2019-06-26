@@ -1,0 +1,16 @@
+{
+    "token": "",
+    "dataPath": "./away_interact/away_data/",
+    "userCommands": [
+        {
+            "command": "help",
+            "description": "Relay information about the Away Moderation Bot."
+        }
+    ],
+    "adminCommands": [
+        {
+            "command": "streval <enable/disable/(0-7)>",
+            "description": "Manage the string evaluation feature (keyword moderation)."
+        }
+    ]
+}
