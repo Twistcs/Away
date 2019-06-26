@@ -1,16 +1,37 @@
 {
     "token": "",
     "dataPath": "./away_interact/away_data/",
-    "userCommands": [
-        {
-            "command": "help",
-            "description": "Relay information about the Away Moderation Bot."
+    "title": "Away Moderation",
+    "thumbnail": "https://i.imgur.com/iQiy4KE.png",
+    "website": "https://awaybot.me",
+    "announcement": "Away is an open source state of the art Discord Moderation bot developed for Discord Hack Week.",
+    "color": "#ffffff",
+    "userCommands": {
+        "help": {
+            "usage": "help",
+            "description": "Relay information about the Away Moderation Bot.",
+            "error": "",
+            "success": ""
         }
-    ],
-    "adminCommands": [
-        {
-            "command": "streval <enable/disable/(0-7)>",
-            "description": "Manage the string evaluation feature (keyword moderation)."
+    },
+    "adminCommands": {
+        "prefix": {
+            "usage": "prefix <phrase>",
+            "description": "Change the phrase used as the prefix. Default is ^.",
+            "error": "Please specify a single phrase to set a new prefix.",
+            "success": "You have updated Away's prefix succesfully."
+        },
+        "streval": {
+            "usage": "streval <enable/disable/(0-7)>",
+            "description": "Manage the string evaluation feature (keyword moderation).",
+            "error": "Please specify the desired status or strength for string evaluation.",
+            "success": "You have updated Away's string evaluation status succesfully."
+        },
+        "reset": {
+            "usage": "reset",
+            "description": "Wipe and reset your server data for Away.",
+            "error": "",
+            "success": "You have wiped and reset Away's data for your server."
         }
-    ]
+    }
 }

@@ -26,8 +26,9 @@ ClientInstance.on('ready', () => {
         tempRequire.Discord = Discord;
         tempRequire.Console = Console;
         tempRequire.Configuration = Configuration;
-        tempRequire.ClientModules = ClientModules;
         tempRequire.ClientInstance = ClientInstance;
+        tempRequire.ClientModules = ClientModules;
+        tempRequire.Data = Data;
         // Add To Module Chain
         ClientModules[file] = tempRequire;
     });
@@ -45,14 +46,23 @@ ClientInstance.on('message', msg => {
     // Fire Message Event For All Client Modules
     let guildInformation = Data.readGuild(msg.guild.id);
     // Decipher if the message content is a command - if it is retrieve it's lowercase string.
-    let command = msg.content != guildInformation.prefix && msg.content.substring(0, 1) == guildInformation.prefix ? (msg.content.split(' ').length == 1 ? msg.content.substring(1) : msg.content.split(' ')[0].substring(1)).toLowerCase() : false;
+    let command = msg.content != guildInformation.prefix && msg.content.substring(0, guildInformation.prefix.length) == guildInformation.prefix ? (msg.content.split(' ').length == 1 ? msg.content.substring(guildInformation.prefix.length) : msg.content.split(' ')[0].substring(guildInformation.prefix.length)).toLowerCase() : false;
     // Decipher message arguments
-    let args = command ? (msg.content.split(command)[1].substring(0, 1) == ' ' ? msg.content.split(command)[1].substring(1).split(' ') : msg.content.split(command)[1].split(' ')) : {};
+    let args = [];
+    if(command) {
+        let tempArgs = msg.content.split(' ');
+        tempArgs.shift();
+        if(tempArgs[0] == command) {
+            tempArgs.shift();
+        }
+        args = tempArgs;
+    }
     Object.keys(ClientModules).forEach(moduleName => {
         try {
             ClientModules[moduleName].message(guildInformation, {command, args}, msg);
         } catch(e) {
-            Console.warn('Couldn\'t find message event in ' + moduleName + '.');
+            Console.warn('An issue occurred in the message event within ' + moduleName + '.');
+            Console.error('-> ' + e);
         }
     });
 });

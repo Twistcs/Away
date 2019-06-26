@@ -2,11 +2,12 @@ const defaultGuild = {
     id: '',
     prefix: '^',
     data: {
-        stringEvaluation: false,
+        stringEvaluation: true,
         evaluationStrength: 3,
-        maximumWarnings: 5,
+        evaluationsBeforeMute: 5,
         clearRecordInterval: 86400,
-        restrictedKeywords: []
+        blacklistedKeywords: [],
+        whitelistedKeywords: []
     }
 };
 const fs = require('fs');
