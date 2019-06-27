@@ -21,6 +21,8 @@
   "homepage": "https://github.com/ryanhuellen/Away#readme",
   "dependencies": {
     "@tensorflow-models/toxicity": "^1.1.0",
+    "@tensorflow/tfjs-converter": "^1.2.2",
+    "@tensorflow/tfjs-core": "^1.2.2",
     "discord.js": "^11.5.1"
   }
 }
