@@ -3,7 +3,7 @@ module.exports = {
         if(parsedContent.command && parsedContent.command == 'smartfilter') {
             if(module.exports.ClientModules['util_permission.js'].hasPermissionFromMsg(msg, 'ADMINISTRATOR')) {
                 if(parsedContent.args.length == 1) {
-                    if(parsedContent.args[0] == 'enable') {
+                    if(parsedContent.args[0].toLowerCase() == 'enable') {
                         guildInformation.data.smartFilter = true;
                         module.exports.Data.writeFile(guildInformation.id, 'json', JSON.stringify(guildInformation));
                         msg.reply(
@@ -13,7 +13,7 @@ module.exports = {
                             .setThumbnail(module.exports.Configuration.thumbnail)
                             .addField('**Success!**', module.exports.Configuration.adminCommands.smartfilter.success)
                         );
-                    } else if(parsedContent.args[0] == 'disable') {
+                    } else if(parsedContent.args[0].toLowerCase() == 'disable') {
                         guildInformation.data.smartFilter = false;
                         module.exports.Data.writeFile(guildInformation.id, 'json', JSON.stringify(guildInformation));
                         msg.reply(

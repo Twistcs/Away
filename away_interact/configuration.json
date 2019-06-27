@@ -42,7 +42,13 @@
             "usage": "filterpunish <mute/kick/tempban/ban> <limit>",
             "description": "Manage the punishments given after a certain amount of flags.",
             "error": "Please specify a punishment type and flag limit for filter punishments.",
-            "success": "You have updated Away's string evaluation punishments succesfully."
+            "success": "You have updated Away's smart filter punishments succesfully."
+        },
+        "filterconfig": {
+            "usage": "filterconfig <filter-name> <enable/disable>",
+            "description": "List out filter statuses (without arguments) or enable/disable them at will.",
+            "error": "Please specify if you want to list your filters, or enable/disable a certain one.",
+            "success": "You have updated Away's smart filter configuration succesfully."
         },
         "blacklist": {
             "usage": "blacklist <add/remove> <word>",
