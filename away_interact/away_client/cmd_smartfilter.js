@@ -1,37 +1,38 @@
 module.exports = {
     message: (guildInformation, parsedContent, msg) => {
-        if(parsedContent.command && parsedContent.command == 'evalpunish') {
+        if(parsedContent.command && parsedContent.command == 'smartfilter') {
             if(module.exports.ClientModules['util_permission.js'].hasPermissionFromMsg(msg, 'ADMINISTRATOR')) {
-                if(parsedContent.args.length == 2 && !isNaN(parsedContent.args[1])) {
-                    if(parsedContent.args[0] == 'ban') {
-                        guildInformation.data.evaluationsBeforeBan = parsedContent.args[1];
+                if(parsedContent.args.length == 1) {
+                    if(parsedContent.args[0] == 'enable') {
+                        guildInformation.data.smartFilter = true;
                         module.exports.Data.writeFile(guildInformation.id, 'json', JSON.stringify(guildInformation));
                         msg.reply(
                             new module.exports.Discord.RichEmbed()
                             .setColor(module.exports.Configuration.color)
                             .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
                             .setThumbnail(module.exports.Configuration.thumbnail)
-                            .addField('**Success!**', module.exports.Configuration.adminCommands.evalpunish.success)
+                            .addField('**Success!**', module.exports.Configuration.adminCommands.smartfilter.success)
                         );
-                    } else if(parsedContent.args[0] == 'kick') {
-                        guildInformation.data.evaluationsBeforeKick = parsedContent.args[1];
+                    } else if(parsedContent.args[0] == 'disable') {
+                        guildInformation.data.smartFilter = false;
                         module.exports.Data.writeFile(guildInformation.id, 'json', JSON.stringify(guildInformation));
                         msg.reply(
                             new module.exports.Discord.RichEmbed()
                             .setColor(module.exports.Configuration.color)
                             .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
                             .setThumbnail(module.exports.Configuration.thumbnail)
-                            .addField('**Success!**', module.exports.Configuration.adminCommands.evalpunish.success)
+                            .addField('**Success!**', module.exports.Configuration.adminCommands.smartfilter.success)
                         );
-                    } else if(parsedContent.args[0] == 'mute') {
-                        guildInformation.data.evaluationsBeforeMute = parsedContent.args[1];
+                    } else if(!isNaN(parsedContent.args[0]) && parsedContent.args[0] >= 1 && parsedContent.args[0] <= 99) {
+                        guildInformation.data.filterThreshold = parsedContent.args[0];
                         module.exports.Data.writeFile(guildInformation.id, 'json', JSON.stringify(guildInformation));
+                        module.exports.ClientModules['job_eval.js'].loadNewModel(guildInformation.id, parsedContent.args[0]);
                         msg.reply(
                             new module.exports.Discord.RichEmbed()
                             .setColor(module.exports.Configuration.color)
                             .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
                             .setThumbnail(module.exports.Configuration.thumbnail)
-                            .addField('**Success!**', module.exports.Configuration.adminCommands.evalpunish.success)
+                            .addField('**Success!**', module.exports.Configuration.adminCommands.smartfilter.success)
                         );
                     } else {
                         msg.reply(
@@ -39,8 +40,8 @@ module.exports = {
                             .setColor(module.exports.Configuration.color)
                             .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
                             .setThumbnail(module.exports.Configuration.thumbnail)
-                            .addField('**Argument Error:**', module.exports.Configuration.adminCommands.evalpunish.error)
-                            .addField('**Correct Use:**', module.exports.Configuration.adminCommands.evalpunish.usage)
+                            .addField('**Argument Error:**', module.exports.Configuration.adminCommands.smartfilter.error)
+                            .addField('**Correct Use:**', module.exports.Configuration.adminCommands.smartfilter.usage)
                         );
                     }
                 } else {
@@ -49,8 +50,8 @@ module.exports = {
                         .setColor(module.exports.Configuration.color)
                         .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
                         .setThumbnail(module.exports.Configuration.thumbnail)
-                        .addField('**Argument Error:**', module.exports.Configuration.adminCommands.evalpunish.error)
-                        .addField('**Correct Use:**', module.exports.Configuration.adminCommands.evalpunish.usage)
+                        .addField('**Argument Error:**', module.exports.Configuration.adminCommands.smartfilter.error)
+                        .addField('**Correct Use:**', module.exports.Configuration.adminCommands.smartfilter.usage)
                     );
                 }
             }

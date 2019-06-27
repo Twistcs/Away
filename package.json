@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/ryanhuellen/Away#readme",
   "dependencies": {
+    "@tensorflow-models/toxicity": "^1.1.0",
     "discord.js": "^11.5.1"
   }
 }

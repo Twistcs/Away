@@ -2,15 +2,23 @@ const defaultGuild = {
     id: '',
     prefix: '^',
     data: {
-        stringEvaluation: true,
-        evaluationStrength: 3,
-        evaluationsBeforeMute: 7,
-        evaluationsBeforeKick: 14,
-        evaluationsBeforeBan: 20,
+        smartFilter: true,
+        filterThreshold: 50,
+        flagsBeforeMute: 3,
+        flagsBeforeKick: 8,
+        flagsBeforeBan: 15,
         muteLength: 600,
         clearRecordInterval: 86400,
         blacklistedKeywords: [],
-        whitelistedKeywords: []
+        filters: {
+            identity_attack: true,
+            insult: true,
+            obscene: true,
+            severe_toxicity: true,
+            sexual_explicit: true,
+            threat: true,
+            toxicity: true
+        }
     },
     users: {}
 };

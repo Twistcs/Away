@@ -22,17 +22,24 @@
             "error": "Please specify a single phrase to set a new prefix.",
             "success": "You have updated Away's prefix succesfully."
         },
-        "evalstatus": {
-            "usage": "evalstatus <enable/disable/(1-7)>",
-            "description": "Manage the string evaluation feature status (keyword moderation).",
-            "error": "Please specify the desired status or strength for string evaluation.",
-            "success": "You have updated Away's string evaluation status succesfully."
+        "smartfilter": {
+            "usage": "smartfilter <enable/disable/(1-99)>",
+            "description": "Manage the smart filter feature status.",
+            "error": "Please specify the desired status or threshold for the smart filter.",
+            "success": "You have updated Away's smart filter status succesfully."
         },
-        "evalpunish": {
-            "usage": "evalpunish <mute/kick/ban> <limit>",
-            "description": "Manage the punishments given after a certain amount of evaluations exceeding the status limit.",
-            "error": "Please specify a punishment type and limit for string evaluation.",
+        "filterpunish": {
+            "usage": "filterpunish <mute/kick/ban> <limit>",
+            "description": "Manage the punishments given after a certain amount of flags.",
+            "error": "Please specify a punishment type and flag limit for filter punishments.",
             "success": "You have updated Away's string evaluation punishments succesfully."
+        },
+        "blacklist": {
+            "usage": "blacklist <add/remove> <word>",
+            "description": "Blacklist a certain word for flagging by string evaluation.",
+            "error": "Please specify if you're adding or removing a word and the word you're targeting.",
+            "success": "You have updated Away's string evaluation blacklist.",
+            "includesError": "The word you're trying to add may already be on the list, or it doesn't exist."
         },
         "dump": {
             "usage": "dump",

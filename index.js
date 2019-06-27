@@ -46,7 +46,7 @@ ClientInstance.on('guildCreate', guild => {
 ClientInstance.on('message', msg => {
     // Prevent Bot Messages From Going Through & Delete Job
     if(msg.author.bot) {
-        if(msg.channel.parent.name != Configuration.logsCategory && msg.author.id == ClientInstance.user.id) {
+        if(msg.author.id == ClientInstance.user.id && msg.channel.parent && msg.channel.parent.name != Configuration.logsCategory) {
             msg.delete(12000);
         }
         return;

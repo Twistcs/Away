@@ -11,7 +11,7 @@ module.exports = {
                         .setColor(module.exports.Configuration.color)
                         .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
                         .setThumbnail(module.exports.Configuration.thumbnail)
-                        .addField('**Success!**', 'You have updated the prefix to ' + prefix)
+                        .addField('**Success!**', module.exports.Configuration.adminCommands.prefix.success)
                     );
                 } else {
                     msg.reply(
@@ -19,8 +19,8 @@ module.exports = {
                         .setColor(module.exports.Configuration.color)
                         .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
                         .setThumbnail(module.exports.Configuration.thumbnail)
-                        .addField('**Argument Error:**', 'Please specify a single phrase to set a new prefix.')
-                        .addField('**Correct Use:**', 'prefix <phrase>')
+                        .addField('**Argument Error:**', module.exports.Configuration.adminCommands.prefix.error)
+                        .addField('**Correct Use:**', module.exports.Configuration.adminCommands.prefix.usage)
                     );
                 }
             }
