@@ -6,6 +6,7 @@
     "website": "https://awaybot.me",
     "announcement": "Away is an open source state of the art Discord Moderation bot developed for Discord Hack Week.",
     "color": "#ffffff",
+    "logsCategory": "➚ Away Logs ➚",
     "userCommands": {
         "help": {
             "usage": "help",
@@ -21,11 +22,23 @@
             "error": "Please specify a single phrase to set a new prefix.",
             "success": "You have updated Away's prefix succesfully."
         },
-        "streval": {
-            "usage": "streval <enable/disable/(0-7)>",
-            "description": "Manage the string evaluation feature (keyword moderation).",
+        "evalstatus": {
+            "usage": "evalstatus <enable/disable/(1-7)>",
+            "description": "Manage the string evaluation feature status (keyword moderation).",
             "error": "Please specify the desired status or strength for string evaluation.",
             "success": "You have updated Away's string evaluation status succesfully."
+        },
+        "evalpunish": {
+            "usage": "evalpunish <mute/kick/ban> <limit>",
+            "description": "Manage the punishments given after a certain amount of evaluations exceeding the status limit.",
+            "error": "Please specify a punishment type and limit for string evaluation.",
+            "success": "You have updated Away's string evaluation punishments succesfully."
+        },
+        "dump": {
+            "usage": "dump",
+            "description": "Dump all data tied to Away in your server.",
+            "error": "",
+            "success": "We have succesfully retrieved your data."
         },
         "reset": {
             "usage": "reset",

@@ -4,11 +4,15 @@ const defaultGuild = {
     data: {
         stringEvaluation: true,
         evaluationStrength: 3,
-        evaluationsBeforeMute: 5,
+        evaluationsBeforeMute: 7,
+        evaluationsBeforeKick: 14,
+        evaluationsBeforeBan: 20,
+        muteLength: 600,
         clearRecordInterval: 86400,
         blacklistedKeywords: [],
         whitelistedKeywords: []
-    }
+    },
+    users: {}
 };
 const fs = require('fs');
 module.exports = {

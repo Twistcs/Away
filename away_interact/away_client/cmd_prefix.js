@@ -1,7 +1,6 @@
 module.exports = {
     message: (guildInformation, parsedContent, msg) => {
         if(parsedContent.command && parsedContent.command == 'prefix') {
-            msg.delete();
             if(module.exports.ClientModules['util_permission.js'].hasPermissionFromMsg(msg, 'ADMINISTRATOR')) {
                 if(parsedContent.args.length == 1) {
                     let prefix = parsedContent.args[0];

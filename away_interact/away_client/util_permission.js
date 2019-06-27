@@ -1,5 +1,5 @@
 module.exports = {
-    message: () => {},
+    message: _ => {},
     hasPermission: (member, permission) => {
         let tempPermission = permission.toUpperCase();
         return member.hasPermission(tempPermission);

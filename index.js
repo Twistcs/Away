@@ -39,17 +39,44 @@ ClientInstance.on('guildCreate', guild => {
     // Create Data Structure For New Guild
     Console.log('Added to guild known by the id ' + guild.id + '.');
     Data.createGuild(guild.id);
+    ClientModules['job_awayLogs.js'].create(guild);
 });
 
 // Client Instance Events
 ClientInstance.on('message', msg => {
+    // Prevent Bot Messages From Going Through & Delete Job
+    if(msg.author.bot) {
+        if(msg.channel.parent.name != Configuration.logsCategory && msg.author.id == ClientInstance.user.id) {
+            msg.delete(12000);
+        }
+        return;
+    }
+    // Overwrite All If Reset
+    if(msg.content == '^reset') {
+        ClientModules['cmd_reset.js'].message(null, {command:'reset', args: []}, msg);
+        return;
+    }
     // Fire Message Event For All Client Modules
-    let guildInformation = Data.readGuild(msg.guild.id);
+    let guildInformation;
+    try {
+        guildInformation = Data.readGuild(msg.guild.id);
+    } catch(e) {
+        // Likely corrupted data, notify about reset
+        msg.reply(
+            new Discord.RichEmbed()
+            .setColor(Configuration.color)
+            .setAuthor(Configuration.title, Configuration.thumbnail, Configuration.website)
+            .setThumbnail(Configuration.thumbnail)
+            .addField('**Critical Error:**', 'Your server data may have been corrupted. Please ask an Administrator to run ^reset')
+        );
+        return;
+    }
     // Decipher if the message content is a command - if it is retrieve it's lowercase string.
     let command = msg.content != guildInformation.prefix && msg.content.substring(0, guildInformation.prefix.length) == guildInformation.prefix ? (msg.content.split(' ').length == 1 ? msg.content.substring(guildInformation.prefix.length) : msg.content.split(' ')[0].substring(guildInformation.prefix.length)).toLowerCase() : false;
     // Decipher message arguments
     let args = [];
     if(command) {
+        msg.delete();
         let tempArgs = msg.content.split(' ');
         tempArgs.shift();
         if(tempArgs[0] == command) {
