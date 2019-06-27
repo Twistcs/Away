@@ -33,6 +33,16 @@ module.exports = {
                             .setThumbnail(module.exports.Configuration.thumbnail)
                             .addField('**Success!**', module.exports.Configuration.adminCommands.filterpunish.success)
                         );
+                    } else if(parsedContent.args[0] == 'tempban') {
+                        guildInformation.data.flagsBeforeTempban = parsedContent.args[1];
+                        module.exports.Data.writeFile(guildInformation.id, 'json', JSON.stringify(guildInformation));
+                        msg.reply(
+                            new module.exports.Discord.RichEmbed()
+                            .setColor(module.exports.Configuration.color)
+                            .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
+                            .setThumbnail(module.exports.Configuration.thumbnail)
+                            .addField('**Success!**', module.exports.Configuration.adminCommands.filterpunish.success)
+                        );
                     } else {
                         msg.reply(
                             new module.exports.Discord.RichEmbed()

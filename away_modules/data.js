@@ -4,10 +4,12 @@ const defaultGuild = {
     data: {
         smartFilter: true,
         filterThreshold: 50,
-        flagsBeforeMute: 3,
-        flagsBeforeKick: 8,
-        flagsBeforeBan: 15,
+        flagsBeforeMute: 5,
+        flagsBeforeKick: 10,
+        flagsBeforeTempban: 15,
+        flagsBeforeBan: 20,
         muteLength: 600,
+        tempBanLength: 86400,
         clearRecordInterval: 86400,
         blacklistedKeywords: [],
         filters: {

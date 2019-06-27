@@ -7,6 +7,16 @@
     "announcement": "Away is an open source state of the art Discord Moderation bot developed for Discord Hack Week.",
     "color": "#ffffff",
     "logsCategory": "➚ Away Logs ➚",
+    "reasons": {
+        "deletionMessage": "Your message has been deleted by the Away Smart Filter.",
+        "banReason": "Banned by the Away Smart Filter for reaching flag threshold.",
+        "tempbanReason": "Temp Banned by the Away Smart Filter for reaching flag threshold.",
+        "kickReason": "Kicked by Away Moderation for reaching flag threshold.",
+        "muteReason": "Muted by Away Moderation for reaching flag threshold.",
+        "roleCreation": "Away Moderation required this role to work properly.",
+        "rolePushShift": "Away Moderation added/removed this role.",
+        "deletionMessageMuted": "Your message has been deleted by the Away Smart Filter because __you are muted__."
+    },
     "userCommands": {
         "help": {
             "usage": "help",
@@ -29,7 +39,7 @@
             "success": "You have updated Away's smart filter status succesfully."
         },
         "filterpunish": {
-            "usage": "filterpunish <mute/kick/ban> <limit>",
+            "usage": "filterpunish <mute/kick/tempban/ban> <limit>",
             "description": "Manage the punishments given after a certain amount of flags.",
             "error": "Please specify a punishment type and flag limit for filter punishments.",
             "success": "You have updated Away's string evaluation punishments succesfully."
