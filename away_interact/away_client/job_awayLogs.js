@@ -233,33 +233,5 @@ module.exports = {
                 .setTimestamp()
             );
         }
-    },
-    channelCreate: data => {
-        let channel = data.leading;
-        let guild = channel.guild;
-        guild.channels.find(channel => channel.name == 'audit' && channel.parent == guild.channels.find(channel => channel.name == module.exports.Configuration.logsCategory && channel.type == 'category')).send(
-            new module.exports.Discord.RichEmbed()
-            .setColor(module.exports.Configuration.color)
-            .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
-            .setThumbnail(module.exports.Configuration.thumbnail)
-            .addField('**Action Type:**', 'Channel Created')
-            .addField('**Channel ID:**', channel.id)
-            .addField('**Channel Name:**', channel.name)
-            .setTimestamp()
-        );
-    },
-    channelDelete: data => {
-        let channel = data.leading;
-        let guild = channel.guild;
-        guild.channels.find(channel => channel.name == 'audit' && channel.parent == guild.channels.find(channel => channel.name == module.exports.Configuration.logsCategory && channel.type == 'category')).send(
-            new module.exports.Discord.RichEmbed()
-            .setColor(module.exports.Configuration.color)
-            .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
-            .setThumbnail(module.exports.Configuration.thumbnail)
-            .addField('**Action Type:**', 'Channel Deleted')
-            .addField('**Channel ID:**', channel.id)
-            .addField('**Channel Name:**', channel.name)
-            .setTimestamp()
-        );
     }
 };

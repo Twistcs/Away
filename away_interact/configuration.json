@@ -46,7 +46,7 @@
             "success": "You have updated Away's smart filter status succesfully."
         },
         "filterpunish": {
-            "usage": "filterpunish | filterpunish <mute/kick/tempban/ban> <limit>",
+            "usage": "filterpunish | filterpunish <mute/kick/tempban/ban> <threshold>",
             "description": "Manage the punishments given after a certain threshold of flags.",
             "error": "Please specify a punishment type and flag threshold for filter punishments.",
             "success": "You have updated Away's smart filter punishments succesfully."
@@ -76,6 +76,12 @@
             "error": "Please specify if you're adding or removing a word and the word you're targeting.",
             "success": "You have updated Away's smart filter whitelist.",
             "includesError": "The word you're trying to add may already be on the list, or it doesn't exist."
+        },
+        "aflags": {
+            "usage": "aflags <tag> <clear>",
+            "description": "List the flags for a certain user, or clear their flags.",
+            "error": "Please specify a user (tag) you'd like to get/clear flags from.",
+            "success": "You have succesfully cleared the defined users flags."
         },
         "bypass": {
             "usage": "bypass | bypass <tag>",

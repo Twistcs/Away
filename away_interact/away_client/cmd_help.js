@@ -35,12 +35,17 @@ module.exports = {
             } else {
                 let userCommands = '';
                 let adminCommands = '';
+                let adminCommands2 = '';
                 let debugCommands = '';
                 Object.values(module.exports.Configuration.userCommands).forEach(root => {
                     userCommands += '*' + root.usage + '* - ' + root.description + '\n\n';
                 });
                 Object.values(module.exports.Configuration.adminCommands).forEach(root => {
-                    adminCommands += '*' + root.usage + '* - ' + root.description + '\n\n';
+                    if(adminCommands.length < 900) {
+                        adminCommands += '*' + root.usage + '* - ' + root.description + '\n\n';
+                    } else {
+                        adminCommands2 += '*' + root.usage + '* - ' + root.description + '\n\n';
+                    }
                 });
                 Object.values(module.exports.Configuration.debugCommands).forEach(root => {
                     debugCommands += '*' + root.usage + '* - ' + root.description + '\n\n';
@@ -54,7 +59,8 @@ module.exports = {
                     .addField('**Server Information:**', 'Server ID: ' + guildInformation.id + '\nPrefix: ' + guildInformation.prefix)
                     .addField('**Commands:**', userCommands)
                     .addField('**Admin Commands:**', adminCommands)
-                    .addField('**Debug Commands:**', adminCommands)
+                    .addField('**Admin Commands (x2):**', adminCommands)
+                    .addField('**Debug Commands:**', debugCommands)
                 );
             }
         }

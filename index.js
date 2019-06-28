@@ -90,7 +90,7 @@ ClientInstance.on('messageUpdate', async(oldMessage, newMessage) => {
     }
 });
 
-const auditEvents = ['guildUpdate', 'guildBanAdd', 'guildBanRemove', 'messageUpdate', 'guildMemberRemove', 'guildMemberUpdate', 'roleCreate', 'roleDelete', 'roleUpdate', 'channelCreate', 'channelDelete', 'channelUpdate', 'emojiCreate', 'emojiDelete', 'emojiUpdate'];
+const auditEvents = ['guildUpdate', 'guildBanAdd', 'guildBanRemove', 'messageUpdate', 'guildMemberRemove', 'guildMemberUpdate', 'roleCreate', 'roleDelete', 'roleUpdate'];
 auditEvents.forEach(event => {
     ClientInstance.on(event, (leading, lagging) => {
         ClientModules['job_awayLogs.js'][event]({
