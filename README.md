@@ -59,6 +59,9 @@
 - whitelist
   - Description: Whitelist a certain word to not be flagged by the smart filter.
   - Usage: whitelist | whitelist <add/remove> <word>
+- aflags
+  - Description: List the flags for a certain user, or clear their flags.
+  - Usage: aflags <tag> <clear>
 - bypass
   - Description: Enable/Disable immunity from the smart filter for yourself or a certain user.
   - Usage: bypass | bypass <tag>
