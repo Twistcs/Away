@@ -2,6 +2,10 @@
 # Away Moderation Bot
 > No longer fear leaving your server alone. The Away Moderation Bot has you covered while you're *away*.
 ---
+##### **Away Support Discord / Try It Out:** https://discord.gg/hG5tqCG <br>
+##### **Invite The Bot:** https://discordapp.com/api/oauth2/authorize?client_id=593282838976135169&permissions=8&scope=bot <br>
+##### **Check Out Our Websie:** https://awaybot.me/
+---
 ### What is this?
 > The Away Moderation Bot was created for Discord Hack Week under the moderation category. It's a highly customizable open source bot for both developers looking to fork the project and server owners. The bot utilizes a trained AI to parse messages and determine if they are found to fall under one of the following categories: Identity Attack, Insult, Obscene, Servere Toxicity, Sexually Explicit, Threat, or Toxic. Also, an enhanced audit log feature for server owners is included.
 ### How does this "AI" stuff work?
