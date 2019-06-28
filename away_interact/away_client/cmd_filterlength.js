@@ -1,6 +1,6 @@
 module.exports = {
     message: (guildInformation, parsedContent, msg) => {
-        if(parsedContent.command && parsedContent.command == 'smartfilter') {
+        if(parsedContent.command && parsedContent.command == 'filterlength') {
             if(module.exports.ClientModules['util_permission.js'].hasPermissionFromMsg(msg, 'ADMINISTRATOR')) {
                 if(parsedContent.args.length == 0) {
                     msg.reply(
@@ -8,49 +8,40 @@ module.exports = {
                         .setColor(module.exports.Configuration.color)
                         .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
                         .setThumbnail(module.exports.Configuration.thumbnail)
-                        .addField('**Filter Status:**', guildInformation.data.smartFilter ? 'Enabled' : 'Disabled')
-                        .addField('**Filter Threshold:**', guildInformation.data.filterThreshold + '%')
+                        .addField('**Current Lengths (in seconds):**', 
+                            'Tempban: ' + guildInformation.data.tempbanLength + ' seconds.\n' +
+                            'Mute: ' + guildInformation.data.muteLength + ' seconds.'
+                        )
                     );
-                } else if(parsedContent.args.length == 1) {
-                    if(parsedContent.args[0].toLowerCase() == 'enable') {
-                        guildInformation.data.smartFilter = true;
-                        module.exports.Data.writeFile(guildInformation.id, guildInformation);
+                } else if(parsedContent.args.length == 2 && !isNaN(parsedContent.args[1])) {
+                    if(parsedContent.args[0].toLowerCase() == 'mute') {
                         msg.reply(
                             new module.exports.Discord.RichEmbed()
                             .setColor(module.exports.Configuration.color)
                             .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
                             .setThumbnail(module.exports.Configuration.thumbnail)
-                            .addField('**Success!**', module.exports.Configuration.adminCommands.smartfilter.success)
+                            .addField('**Success!**', module.exports.Configuration.adminCommands.filterlength.success)
                         );
-                    } else if(parsedContent.args[0].toLowerCase() == 'disable') {
-                        guildInformation.data.smartFilter = false;
+                        guildInformation.data.muteLength = parsedContent.args[1];
                         module.exports.Data.writeFile(guildInformation.id, guildInformation);
+                    } else if(parsedContent.args[0].toLowerCase() == 'tempban') {
                         msg.reply(
                             new module.exports.Discord.RichEmbed()
                             .setColor(module.exports.Configuration.color)
                             .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
                             .setThumbnail(module.exports.Configuration.thumbnail)
-                            .addField('**Success!**', module.exports.Configuration.adminCommands.smartfilter.success)
+                            .addField('**Success!**', module.exports.Configuration.adminCommands.filterlength.success)
                         );
-                    } else if(!isNaN(parsedContent.args[0]) && parsedContent.args[0] >= 1 && parsedContent.args[0] <= 99) {
-                        guildInformation.data.filterThreshold = parsedContent.args[0];
+                        guildInformation.data.tempbanLength = parsedContent.args[1];
                         module.exports.Data.writeFile(guildInformation.id, guildInformation);
-                        module.exports.ClientModules['job_eval.js'].loadNewModel(guildInformation.id, parsedContent.args[0]);
-                        msg.reply(
-                            new module.exports.Discord.RichEmbed()
-                            .setColor(module.exports.Configuration.color)
-                            .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
-                            .setThumbnail(module.exports.Configuration.thumbnail)
-                            .addField('**Success!**', module.exports.Configuration.adminCommands.smartfilter.success)
-                        );
                     } else {
                         msg.reply(
                             new module.exports.Discord.RichEmbed()
                             .setColor(module.exports.Configuration.color)
                             .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
                             .setThumbnail(module.exports.Configuration.thumbnail)
-                            .addField('**Argument Error:**', module.exports.Configuration.adminCommands.smartfilter.error)
-                            .addField('**Correct Use:**', module.exports.Configuration.adminCommands.smartfilter.usage)
+                            .addField('**Argument Error:**', module.exports.Configuration.adminCommands.filterlength.error)
+                            .addField('**Correct Use:**', module.exports.Configuration.adminCommands.filterlength.usage)
                         );
                     }
                 } else {
@@ -59,8 +50,8 @@ module.exports = {
                         .setColor(module.exports.Configuration.color)
                         .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
                         .setThumbnail(module.exports.Configuration.thumbnail)
-                        .addField('**Argument Error:**', module.exports.Configuration.adminCommands.smartfilter.error)
-                        .addField('**Correct Use:**', module.exports.Configuration.adminCommands.smartfilter.usage)
+                        .addField('**Argument Error:**', module.exports.Configuration.adminCommands.filterlength.error)
+                        .addField('**Correct Use:**', module.exports.Configuration.adminCommands.filterlength.usage)
                     );
                 }
             }

@@ -9,7 +9,7 @@ const defaultGuild = {
         flagsBeforeTempban: 15,
         flagsBeforeBan: 20,
         muteLength: 600,
-        tempBanLength: 86400,
+        tempbanLength: 86400,
         clearRecordInterval: 86400,
         blacklistedKeywords: [],
         filters: {
@@ -24,43 +24,28 @@ const defaultGuild = {
     },
     users: {}
 };
-const fs = require('fs');
+
+const admin = require('firebase-admin');
+const serviceAccount = require('./ServiceAccountKey.json');
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+});
+const db = admin.firestore();
+
 module.exports = {
-    fileExists: (name, extension) => {
-        try {
-            return fs.existsSync(module.exports.Configuration.dataPath + name + '.' + extension);
-        } catch(e) {
-            return false;
-            module.exports.Console.error('There was an issue reading a file by the name of ' + name + '.');
-        }
+    fileExists: async name => {
+        return await db.doc('guilds/' + name).get(snapshot => { return snapshot.exists })
     },
-    writeFile: (name, extension, data) => {
-        try {
-            fs.writeFileSync(module.exports.Configuration.dataPath + name + '.' + extension, data);
-        } catch(e) {
-            module.exports.Console.error('There was an issue writing a file by the name of ' + name + '.');
-        }
+    writeFile: async (name, data) => {
+        return await db.doc('guilds/' + name).set(data);
     },
-    readFile: (name, extension) => {
-        try {
-            return fs.readFileSync(module.exports.Configuration.dataPath + name + '.' + extension);
-        } catch(e) {
-            return null;
-            module.exports.Console.error('There was an issue reading a file by the name of ' + name + '.');
-        }
+    readFile: async name  => {
+        return await db.doc('guilds/' + name).get(snapshot => { return snapshot; });
     },
-    createGuild: id => {
-        // Warn For Potential Overwrites
-        if(module.exports.fileExists(id, 'json')) {
-            module.exports.Console.warn('A guild by the id of ' + id + ' has previous history and is overwriting their data.');
-        }
+    createGuild: async id  => {
         let tempGuild = defaultGuild;
         tempGuild.id = id;
-        // Write Default Guild Data To File
-        module.exports.writeFile(id, 'json', JSON.stringify(tempGuild));
-        module.exports.Console.log('A guild by the id of ' + id + ' has presumably succesfully created their data.');
-    },
-    readGuild: id => {
-        return JSON.parse(module.exports.readFile(id, 'json'))
+        module.exports.writeFile(id, tempGuild);
+        module.exports.Console.log('A guild by the id of ' + id + ' has succesfully created their data.');
     }
 };

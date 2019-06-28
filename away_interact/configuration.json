@@ -1,6 +1,5 @@
 {
     "token": "",
-    "dataPath": "./away_interact/away_data/",
     "title": "Away Moderation",
     "thumbnail": "https://i.imgur.com/iQiy4KE.png",
     "website": "https://awaybot.me",
@@ -15,12 +14,20 @@
         "muteReason": "Muted by Away Moderation for reaching flag threshold.",
         "roleCreation": "Away Moderation required this role to work properly.",
         "rolePushShift": "Away Moderation added/removed this role.",
-        "deletionMessageMuted": "Your message has been deleted by the Away Smart Filter because __you are muted__."
+        "deletionMessageMuted": "Your message has been deleted by the Away Smart Filter because __you are muted__.",
+        "commandNotFound": "The command you're trying to access couldn't be found.",
+        "userDoesntExist": "We can't find the user you're trying to target."
     },
     "userCommands": {
         "help": {
-            "usage": "help",
+            "usage": "help | help <command>",
             "description": "Relay information about the Away Moderation Bot.",
+            "error": "Please specify a command you'd like more information on.",
+            "success": ""
+        },
+        "flags": {
+            "usage": "flags",
+            "description": "DMs the user the total amount of flags they currently have.",
             "error": "",
             "success": ""
         }
@@ -33,29 +40,41 @@
             "success": "You have updated Away's prefix succesfully."
         },
         "smartfilter": {
-            "usage": "smartfilter <enable/disable/(1-99)>",
-            "description": "Manage the smart filter feature status.",
+            "usage": "smartfilter | smartfilter <enable/disable/(1-99)>",
+            "description": "Manage the smart filter feature status and threshold.",
             "error": "Please specify the desired status or threshold for the smart filter.",
             "success": "You have updated Away's smart filter status succesfully."
         },
         "filterpunish": {
-            "usage": "filterpunish <mute/kick/tempban/ban> <limit>",
-            "description": "Manage the punishments given after a certain amount of flags.",
-            "error": "Please specify a punishment type and flag limit for filter punishments.",
+            "usage": "filterpunish | filterpunish <mute/kick/tempban/ban> <limit>",
+            "description": "Manage the punishments given after a certain threshold of flags.",
+            "error": "Please specify a punishment type and flag threshold for filter punishments.",
             "success": "You have updated Away's smart filter punishments succesfully."
         },
         "filterconfig": {
-            "usage": "filterconfig <filter-name> <enable/disable>",
-            "description": "List out filter statuses (without arguments) or enable/disable them at will.",
+            "usage": "filterconfig | filterconfig <filter-name> <enable/disable>",
+            "description": "Enable/Disable filter statuses at will.",
             "error": "Please specify if you want to list your filters, or enable/disable a certain one.",
             "success": "You have updated Away's smart filter configuration succesfully."
         },
+        "filterlength": {
+            "usage": "filterlength | filterlength <mute/tempban> <length in seconds>",
+            "description": "Modify the length of a mute/tempban that results from filter flagging.",
+            "error": "Please specify a punishment type and a valid length in seconds.",
+            "success": "You have updated Away's smart filter punishment lengths succesfully."
+        },
         "blacklist": {
-            "usage": "blacklist <add/remove> <word>",
-            "description": "Blacklist a certain word for flagging by string evaluation.",
+            "usage": "blacklist | blacklist <add/remove> <word>",
+            "description": "Blacklist a certain word for flagging by the smart filter.",
             "error": "Please specify if you're adding or removing a word and the word you're targeting.",
-            "success": "You have updated Away's string evaluation blacklist.",
+            "success": "You have updated Away's smart filter blacklist.",
             "includesError": "The word you're trying to add may already be on the list, or it doesn't exist."
+        },
+        "bypass": {
+            "usage": "bypass | bypass <user>",
+            "description": "Allow yourself or a certain user to bypass the smart filter.",
+            "error": "Please specify a user you'd like to bypass from the smart filter.",
+            "success": "You have updated Away's smart filter bypass list."
         },
         "dump": {
             "usage": "dump",
@@ -65,7 +84,7 @@
         },
         "reset": {
             "usage": "reset",
-            "description": "Wipe and reset your server data for Away.",
+            "description": "Wipe and reset your server data for Away.\n**WARNING: THIS INCLUDES USER DATA.**",
             "error": "",
             "success": "You have wiped and reset Away's data for your server."
         }

@@ -5,7 +5,7 @@ module.exports = {
                 if(parsedContent.args.length == 1) {
                     let prefix = parsedContent.args[0];
                     guildInformation.prefix = prefix;
-                    module.exports.Data.writeFile(guildInformation.id, 'json', JSON.stringify(guildInformation));
+                    module.exports.Data.writeFile(guildInformation.id, guildInformation);
                     msg.reply(
                         new module.exports.Discord.RichEmbed()
                         .setColor(module.exports.Configuration.color)

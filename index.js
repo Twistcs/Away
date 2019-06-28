@@ -43,7 +43,7 @@ ClientInstance.on('guildCreate', guild => {
 });
 
 // Client Instance Events
-ClientInstance.on('message', msg => {
+ClientInstance.on('message', async msg => {
     // Prevent Bot Messages From Going Through & Delete Job
     if(msg.author.bot) {
         if(msg.author.id == ClientInstance.user.id && msg.channel.parent && msg.channel.parent.name != Configuration.logsCategory) {
@@ -57,20 +57,7 @@ ClientInstance.on('message', msg => {
         return;
     }
     // Fire Message Event For All Client Modules
-    let guildInformation;
-    try {
-        guildInformation = Data.readGuild(msg.guild.id);
-    } catch(e) {
-        // Likely corrupted data, notify about reset
-        msg.reply(
-            new Discord.RichEmbed()
-            .setColor(Configuration.color)
-            .setAuthor(Configuration.title, Configuration.thumbnail, Configuration.website)
-            .setThumbnail(Configuration.thumbnail)
-            .addField('**Critical Error:**', 'Your server data may have been corrupted. Please ask an Administrator to run ^reset')
-        );
-        return;
-    }
+    let guildInformation = (await Data.readFile(msg.guild.id)).data();
     // Decipher if the message content is a command - if it is retrieve it's lowercase string.
     let command = msg.content != guildInformation.prefix && msg.content.substring(0, guildInformation.prefix.length) == guildInformation.prefix ? (msg.content.split(' ').length == 1 ? msg.content.substring(guildInformation.prefix.length) : msg.content.split(' ')[0].substring(guildInformation.prefix.length)).toLowerCase() : false;
     // Decipher message arguments

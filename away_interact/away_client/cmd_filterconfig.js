@@ -25,7 +25,7 @@ module.exports = {
                                 .addField('**Success!**', module.exports.Configuration.adminCommands.filterconfig.success)
                             );
                             guildInformation.data.filters[parsedContent.args[0].toLowerCase()] = true;
-                            module.exports.Data.writeFile(guildInformation.id, 'json', JSON.stringify(guildInformation));
+                            module.exports.Data.writeFile(guildInformation.id, guildInformation);
                         } else if(parsedContent.args[1].toLowerCase() == 'disable') {
                             msg.reply(
                                 new module.exports.Discord.RichEmbed()
@@ -35,7 +35,7 @@ module.exports = {
                                 .addField('**Success!**', module.exports.Configuration.adminCommands.filterconfig.success)
                             );
                             guildInformation.data.filters[parsedContent.args[0].toLowerCase()] = false;
-                            module.exports.Data.writeFile(guildInformation.id, 'json', JSON.stringify(guildInformation));
+                            module.exports.Data.writeFile(guildInformation.id, guildInformation);
                         } else {
                             msg.reply(
                                 new module.exports.Discord.RichEmbed()

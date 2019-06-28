@@ -33,7 +33,7 @@ module.exports = {
         });
         if(guildInformation.users[msg.author.id] == null) {
             guildInformation.users[msg.author.id] = 0;
-            module.exports.Data.writeFile(guildInformation.id, 'json', JSON.stringify(guildInformation));
+            module.exports.Data.writeFile(guildInformation.id, guildInformation);
         }
         if(inViolation) {
             msg.delete();
@@ -47,7 +47,7 @@ module.exports = {
                 .setTimestamp()
             );
             guildInformation.users[msg.author.id] += 1;
-            module.exports.Data.writeFile(guildInformation.id, 'json', JSON.stringify(guildInformation));
+            module.exports.Data.writeFile(guildInformation.id, guildInformation);
             let enactedPunishments = [];
             if(guildInformation.users[msg.author.id] >= guildInformation.data.flagsBeforeBan) {
                 enactedPunishments.push('BAN');
@@ -95,7 +95,7 @@ module.exports = {
                 });
             } else if(enactedPunishments.includes('TEMPBAN')) {
                 msg.member.ban({
-                    days: guildInformation.data.tempBanLength / (24*60*60),
+                    days: guildInformation.data.tempbanLength / (24*60*60),
                     reason: module.exports.Configuration.reasons.tempbanReason
                 });
             } else if(enactedPunishments.includes('KICK')) {
