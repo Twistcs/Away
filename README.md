@@ -79,9 +79,7 @@ __The commands here are meant for developers or server owners experiencing malfu
   - Usage: reset
 ---
 ### How do I install this beast of a bot?
-> We want to keep it simple when you're using Away. To do this, instead of a wall of text... we have an insightful video!
-The video will be out soon.
-Poor Tempoary Explanation:
+Poor Tempoary Explanation (A VIDEO WILL BE OUT IN A FEW HOURS WITH A FULL TUTORIAL):
 - Install NodeJS
 - Download the Bot
 - Run `npm i` in the root folder (where index.js is)
