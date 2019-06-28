@@ -93,10 +93,14 @@ ClientInstance.on('messageUpdate', async(oldMessage, newMessage) => {
 const auditEvents = ['guildUpdate', 'guildBanAdd', 'guildBanRemove', 'messageUpdate', 'guildMemberRemove', 'guildMemberUpdate', 'roleCreate', 'roleDelete', 'roleUpdate'];
 auditEvents.forEach(event => {
     ClientInstance.on(event, (leading, lagging) => {
-        ClientModules['job_awayLogs.js'][event]({
-            leading,
-            lagging
-        });
+        try {
+            ClientModules['job_awayLogs.js'][event]({
+                leading,
+                lagging
+            });
+        } catch(e) {
+            // Nothing here. There was an error. /shrug
+        }
     });
 });
 
