@@ -1,16 +1,20 @@
+let defaultUser = {
+    flags: 0,
+    bypassing: false
+};
 const tensorLib = require('@tensorflow-models/toxicity');
 module.exports = {
     models: {},
     loadNewModel: async(guildId, newThreshold) => {
-        await tensorLib.load(newThreshold).then(model => {
+        await tensorLib.load(newThreshold / 100).then(model => {
             module.exports.models[guildId] = model;
         });
     },
     message: async(guildInformation, parsedContent, msg) => {
-        if(parsedContent.command == 'blacklist' || msg.member.roles.find(role => role.name == 'Muted') != null) { return; }
+        if(parsedContent.command == 'blacklist' || msg.member.roles.find(role => role.name == 'Muted') != null || (guildInformation.users[msg.author.id] && guildInformation.users[msg.author.id].bypassing)) { return; }
         let inViolation = false;
         if(module.exports.models[guildInformation.id] == null) {
-            await tensorLib.load(guildInformation.data.evaluationThreshold).then(model => {
+            await tensorLib.load(guildInformation.data.filterThreshold / 100).then(model => {
                 module.exports.models[guildInformation.id] = model;
             });
         }
@@ -32,7 +36,7 @@ module.exports = {
             }
         });
         if(guildInformation.users[msg.author.id] == null) {
-            guildInformation.users[msg.author.id] = 0;
+            guildInformation.users[msg.author.id] = defaultUser;
             module.exports.Data.writeFile(guildInformation.id, guildInformation);
         }
         if(inViolation) {
@@ -46,16 +50,16 @@ module.exports = {
                 .addField('**Flagged For:**', inViolationOf.join(', ').replace('_',' ').toUpperCase())
                 .setTimestamp()
             );
-            guildInformation.users[msg.author.id] += 1;
+            guildInformation.users[msg.author.id].flags += 1;
             module.exports.Data.writeFile(guildInformation.id, guildInformation);
             let enactedPunishments = [];
-            if(guildInformation.users[msg.author.id] >= guildInformation.data.flagsBeforeBan) {
+            if(guildInformation.users[msg.author.id].flags >= guildInformation.data.flagsBeforeBan) {
                 enactedPunishments.push('BAN');
-            } else if(guildInformation.users[msg.author.id] >= guildInformation.data.flagsBeforeTempban) {
+            } else if(guildInformation.users[msg.author.id].flags >= guildInformation.data.flagsBeforeTempban) {
                 enactedPunishments.push('TEMPBAN');
-            } else if(guildInformation.users[msg.author.id] >= guildInformation.data.flagsBeforeKick) {
+            } else if(guildInformation.users[msg.author.id].flags >= guildInformation.data.flagsBeforeKick) {
                 enactedPunishments.push('KICK');
-            } else if(guildInformation.users[msg.author.id] >= guildInformation.data.flagsBeforeMute) {
+            } else if(guildInformation.users[msg.author.id].flags >= guildInformation.data.flagsBeforeMute) {
                 enactedPunishments.push('MUTE');
             }
             try {
@@ -68,7 +72,7 @@ module.exports = {
                     .addField('**Message Author Tag:**', '@' + msg.author.tag)
                     .addField('**Message:**', msg.content)
                     .addField('**Flagged For:**', inViolationOf.join(', ').replace('_',' ').toUpperCase())
-                    .addField('**Total Flags:**', 'The user in this instance has a total of ' + guildInformation.users[msg.author.id] + ' flag(s).')
+                    .addField('**Total Flags:**', 'The user in this instance has a total of ' + guildInformation.users[msg.author.id].flags + ' flag(s).')
                     .addField('**Enacted Punishment:**', enactedPunishments.length > 0 ? enactedPunishments.join(', ').toUpperCase() : 'N/A')
                     .setTimestamp()
                 );
@@ -81,7 +85,7 @@ module.exports = {
                     .addField('**Attention:**', module.exports.Configuration.reasons.deletionMessage)
                     .addField('**Message:**', msg.content)
                     .addField('**Flagged For:**', inViolationOf.join(', ').replace('_',' ').toUpperCase())
-                    .addField('**Total Flags:**', 'You have a total of ' + guildInformation.users[msg.author.id] + ' flag(s).')
+                    .addField('**Total Flags:**', 'You have a total of ' + guildInformation.users[msg.author.id].flags + ' flag(s).')
                     .addField('**Enacted Punishment:**', enactedPunishments.length > 0 ? enactedPunishments.join(', ').toUpperCase() : 'N/A')
                     .setTimestamp()
                 );

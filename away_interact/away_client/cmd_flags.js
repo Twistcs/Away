@@ -8,7 +8,7 @@ module.exports = {
                     .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
                     .setThumbnail(module.exports.Configuration.thumbnail)
                     .addField('**Server:**', msg.guild.name)
-                    .addField('**Total Flags:**', (guildInformation.users[msg.author.id] || '0') + ' flags.')
+                    .addField('**Total Flags:**', (guildInformation.users[msg.author.id].flags || '0') + ' flags.')
                 );
             } catch(e) {
                 // DMs not working or something /shrug
