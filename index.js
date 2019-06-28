@@ -63,13 +63,15 @@ ClientInstance.on('message', async msg => {
     // Decipher message arguments
     let args = [];
     if(command) {
-        msg.delete();
         let tempArgs = msg.content.split(' ');
         tempArgs.shift();
         if(tempArgs[0] == command) {
             tempArgs.shift();
         }
         args = tempArgs;
+        if(msg.channel.name != 'flagged' && msg.channel.name != 'audit') {
+            msg.delete();
+        }
     }
     Object.keys(ClientModules).forEach(moduleName => {
         try {
@@ -78,6 +80,23 @@ ClientInstance.on('message', async msg => {
             Console.warn('An issue occurred in the message event within ' + moduleName + '.');
             Console.error('-> ' + e);
         }
+    });
+});
+
+ClientInstance.on('messageUpdate', async(oldMessage, newMessage) => {
+    if(oldMessage.content != newMessage.content) {
+        let guildInformation = (await Data.readFile(newMessage.guild.id)).data();
+        ClientModules['job_smartfilter.js'].message(guildInformation, {}, newMessage);
+    }
+});
+
+const auditEvents = ['guildUpdate', 'guildBanAdd', 'guildBanRemove', 'messageUpdate', 'guildMemberRemove', 'guildMemberUpdate', 'roleCreate', 'roleDelete', 'roleUpdate', 'channelCreate', 'channelDelete', 'channelUpdate', 'emojiCreate', 'emojiDelete', 'emojiUpdate'];
+auditEvents.forEach(event => {
+    ClientInstance.on(event, (leading, lagging) => {
+        ClientModules['job_awayLogs.js'][event]({
+            leading,
+            lagging
+        });
     });
 });
 

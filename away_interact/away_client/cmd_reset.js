@@ -8,7 +8,7 @@ module.exports = {
                     .setColor(module.exports.Configuration.color)
                     .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
                     .setThumbnail(module.exports.Configuration.thumbnail)
-                    .addField('**Success!**', 'You have wiped and reset your server data for Away.')
+                    .addField('**Success!**', module.exports.Configuration.debugCommands.reset.success)
                 );
             }
         }

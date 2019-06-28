@@ -7,7 +7,7 @@ module.exports = {
                     .setColor(module.exports.Configuration.color)
                     .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
                     .setThumbnail(module.exports.Configuration.thumbnail)
-                    .addField('**Success!**', module.exports.Configuration.adminCommands.dump.success)
+                    .addField('**Success!**', module.exports.Configuration.debugCommands.dump.success)
                     .addField('**Dump:**', JSON.stringify(guildInformation))
                 );
             }

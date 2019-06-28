@@ -35,11 +35,15 @@ module.exports = {
             } else {
                 let userCommands = '';
                 let adminCommands = '';
+                let debugCommands = '';
                 Object.values(module.exports.Configuration.userCommands).forEach(root => {
-                    userCommands += '*' + root.usage + '* - ' + root.description + '\n\n'
+                    userCommands += '*' + root.usage + '* - ' + root.description + '\n\n';
                 });
                 Object.values(module.exports.Configuration.adminCommands).forEach(root => {
-                    adminCommands += '*' + root.usage + '* - ' + root.description + '\n\n'
+                    adminCommands += '*' + root.usage + '* - ' + root.description + '\n\n';
+                });
+                Object.values(module.exports.Configuration.debugCommands).forEach(root => {
+                    debugCommands += '*' + root.usage + '* - ' + root.description + '\n\n';
                 });
                 msg.reply(
                     new module.exports.Discord.RichEmbed()
@@ -50,6 +54,7 @@ module.exports = {
                     .addField('**Server Information:**', 'Server ID: ' + guildInformation.id + '\nPrefix: ' + guildInformation.prefix)
                     .addField('**Commands:**', userCommands)
                     .addField('**Admin Commands:**', adminCommands)
+                    .addField('**Debug Commands:**', adminCommands)
                 );
             }
         }

@@ -83,6 +83,14 @@
             "error": "Please specify a user (tag) you'd like to bypass from the smart filter.",
             "success": "You have updated Away's smart filter bypass list."
         },
+        "purge": {
+            "usage": "purge <1-100>",
+            "description": "Purge a defined amount of messages in a channel.",
+            "error": "Please specify a valid amount of messages you'd like to clear.",
+            "success": "Purging..."
+        }
+    },
+    "debugCommands": {
         "dump": {
             "usage": "dump",
             "description": "Dump all data tied to Away in your server.",

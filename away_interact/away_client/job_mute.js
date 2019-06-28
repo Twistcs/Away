@@ -12,7 +12,7 @@ module.exports = {
                     .addField('**Attention:**', module.exports.Configuration.reasons.deletionMessageMuted)
                     .addField('**Message:**', msg.content)
                 );
-                msg.guild.channels.find(channel => channel.name == 'other').send(
+                msg.guild.channels.find(channel => channel.name == 'audit').send(
                     new module.exports.Discord.RichEmbed()
                     .setColor(module.exports.Configuration.color)
                     .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
