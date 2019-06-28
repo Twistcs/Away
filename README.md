@@ -1,9 +1,4 @@
-# Away
-Away is an open source state of the art Discord Moderation bot developed for Discord Hack Week.
-## Features
-⚠️ This section is not yet available. ⚠️
-## Setup
-- Visit our website (link to our Discord server): https://awaybot.me/
-- or via. direct invite: https://discordapp.com/api/oauth2/authorize?client_id=593282838976135169&permissions=8&scope=bot
-## Documentation
-⚠️ This section is not yet available. ⚠️
+https://i.imgur.com/iQiy4KE.png
+# Away Moderation Bot
+No longer fear leaving your server alone. The Away Moderation Bot has you covered while you're *away*.
+---
