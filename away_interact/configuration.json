@@ -1,5 +1,6 @@
 {
     "token": "",
+    "dataPath": "./away_interact/away_data/",
     "title": "Away Moderation",
     "thumbnail": "https://i.imgur.com/iQiy4KE.png",
     "website": "https://awaybot.me",
@@ -16,7 +17,7 @@
         "rolePushShift": "Away Moderation added/removed this role.",
         "deletionMessageMuted": "Your message has been deleted by the Away Smart Filter because __you are muted__.",
         "commandNotFound": "The command you're trying to access couldn't be found.",
-        "userDoesntExist": "We can't find the user you're trying to target."
+        "userNotFound": "We can't find the user you're trying to target."
     },
     "userCommands": {
         "help": {
@@ -70,10 +71,17 @@
             "success": "You have updated Away's smart filter blacklist.",
             "includesError": "The word you're trying to add may already be on the list, or it doesn't exist."
         },
+        "whitelist": {
+            "usage": "whitelist | whitelist <add/remove> <word>",
+            "description": "Whitelist a certain word to not be flagged by the smart filter.",
+            "error": "Please specify if you're adding or removing a word and the word you're targeting.",
+            "success": "You have updated Away's smart filter whitelist.",
+            "includesError": "The word you're trying to add may already be on the list, or it doesn't exist."
+        },
         "bypass": {
-            "usage": "bypass | bypass <user>",
-            "description": "Allow yourself or a certain user to bypass the smart filter.",
-            "error": "Please specify a user you'd like to bypass from the smart filter.",
+            "usage": "bypass | bypass <tag>",
+            "description": "Enable/Disable immunity from the smart filter for yourself or a certain user.",
+            "error": "Please specify a user (tag) you'd like to bypass from the smart filter.",
             "success": "You have updated Away's smart filter bypass list."
         },
         "dump": {

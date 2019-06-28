@@ -12,6 +12,7 @@ const defaultGuild = {
         tempbanLength: 86400,
         clearRecordInterval: 86400,
         blacklistedKeywords: [],
+        whitelistedKeywords: [],
         filters: {
             identity_attack: true,
             insult: true,

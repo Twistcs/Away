@@ -13,8 +13,16 @@ module.exports = {
                     );
                 } else if(parsedContent.args.length == 1) {
                     if(parsedContent.args[0].toLowerCase() == 'enable') {
+                        msg.reply(
+                            new module.exports.Discord.RichEmbed()
+                            .setColor(module.exports.Configuration.color)
+                            .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
+                            .setThumbnail(module.exports.Configuration.thumbnail)
+                            .addField('**Success!**', module.exports.Configuration.adminCommands.smartfilter.success)
+                        );
                         guildInformation.data.smartFilter = true;
                         module.exports.Data.writeFile(guildInformation.id, guildInformation);
+                    } else if(parsedContent.args[0].toLowerCase() == 'disable') {
                         msg.reply(
                             new module.exports.Discord.RichEmbed()
                             .setColor(module.exports.Configuration.color)
@@ -22,9 +30,9 @@ module.exports = {
                             .setThumbnail(module.exports.Configuration.thumbnail)
                             .addField('**Success!**', module.exports.Configuration.adminCommands.smartfilter.success)
                         );
-                    } else if(parsedContent.args[0].toLowerCase() == 'disable') {
                         guildInformation.data.smartFilter = false;
                         module.exports.Data.writeFile(guildInformation.id, guildInformation);
+                    } else if(!isNaN(parsedContent.args[0]) && parsedContent.args[0] >= 1 && parsedContent.args[0] <= 99) {
                         msg.reply(
                             new module.exports.Discord.RichEmbed()
                             .setColor(module.exports.Configuration.color)
@@ -32,17 +40,9 @@ module.exports = {
                             .setThumbnail(module.exports.Configuration.thumbnail)
                             .addField('**Success!**', module.exports.Configuration.adminCommands.smartfilter.success)
                         );
-                    } else if(!isNaN(parsedContent.args[0]) && parsedContent.args[0] >= 1 && parsedContent.args[0] <= 99) {
                         guildInformation.data.filterThreshold = parsedContent.args[0];
                         module.exports.Data.writeFile(guildInformation.id, guildInformation);
-                        module.exports.ClientModules['job_eval.js'].loadNewModel(guildInformation.id, parsedContent.args[0]);
-                        msg.reply(
-                            new module.exports.Discord.RichEmbed()
-                            .setColor(module.exports.Configuration.color)
-                            .setAuthor(module.exports.Configuration.title, module.exports.Configuration.thumbnail, module.exports.Configuration.website)
-                            .setThumbnail(module.exports.Configuration.thumbnail)
-                            .addField('**Success!**', module.exports.Configuration.adminCommands.smartfilter.success)
-                        );
+                        module.exports.ClientModules['job_smartfilter.js'].loadNewModel(guildInformation.id, parsedContent.args[0]);
                     } else {
                         msg.reply(
                             new module.exports.Discord.RichEmbed()

@@ -1,9 +1,9 @@
-let defaultUser = {
-    flags: 0,
-    bypassing: false
-};
 const tensorLib = require('@tensorflow-models/toxicity');
 module.exports = {
+    defaultUser: {
+        flags: 0,
+        bypassing: false
+    },
     models: {},
     loadNewModel: async(guildId, newThreshold) => {
         await tensorLib.load(newThreshold / 100).then(model => {
@@ -11,7 +11,7 @@ module.exports = {
         });
     },
     message: async(guildInformation, parsedContent, msg) => {
-        if(parsedContent.command == 'blacklist' || msg.member.roles.find(role => role.name == 'Muted') != null || (guildInformation.users[msg.author.id] && guildInformation.users[msg.author.id].bypassing)) { return; }
+        if(parsedContent.command == 'blacklist' || parsedContent.command == 'whitelist' || msg.member.roles.find(role => role.name == 'Muted') != null || (guildInformation.users[msg.author.id] && guildInformation.users[msg.author.id].bypassing)) { return; }
         let inViolation = false;
         if(module.exports.models[guildInformation.id] == null) {
             await tensorLib.load(guildInformation.data.filterThreshold / 100).then(model => {
@@ -19,7 +19,11 @@ module.exports = {
             });
         }
         let inViolationOf = [];
-        await module.exports.models[guildInformation.id].classify(msg.content).then(results => {
+        let tempContent = msg.content.toLowerCase();
+        guildInformation.data.whitelistedKeywords.forEach(keyword => {
+            tempContent = tempContent.replace(keyword.toLowerCase(), '');
+        });
+        await module.exports.models[guildInformation.id].classify(tempContent).then(results => {
             results.forEach(filter => {
                 if(guildInformation.data.filters[filter.label]) {
                     if(filter.results[0].match) {
@@ -36,7 +40,7 @@ module.exports = {
             }
         });
         if(guildInformation.users[msg.author.id] == null) {
-            guildInformation.users[msg.author.id] = defaultUser;
+            guildInformation.users[msg.author.id] = module.exports.defaultUser;
             module.exports.Data.writeFile(guildInformation.id, guildInformation);
         }
         if(inViolation) {
