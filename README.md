@@ -20,7 +20,8 @@
 - Configurable Mute / Tempban Lengths
 - Configurable Clear Record Interval
 - Configurable Blacklist / Whitelist (for words of your own)
-- The ability to enable/disable filters at your will.
+- The Ability to Enable/Disable Filters (at will)
+- Improved Audit Logs
 ### Developer Features
 - The ability to hook up your own Firestore (by Google, Firebase Database) to keep your data independent.
 - Huge configuration for command information and personal preferences (commands, reasons, names, thumbnails, colors, etc.)
