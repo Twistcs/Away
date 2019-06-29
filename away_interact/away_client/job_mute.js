@@ -37,7 +37,6 @@ module.exports = {
                         .setThumbnail(module.exports.Configuration.thumbnail)
                         .addField('**Server:**', msg.guild.name)
                         .addField('**Attention:**', module.exports.Configuration.reasons.unmuted)
-                        .addField('**Message:**', msg.content)
                     );
                 } catch(e) {
                     // Garbage from before.
@@ -66,7 +65,6 @@ module.exports = {
                         .setThumbnail(module.exports.Configuration.thumbnail)
                         .addField('**Server:**', msg.guild.name)
                         .addField('**Attention:**', module.exports.Configuration.reasons.unmuted)
-                        .addField('**Message:**', msg.content)
                     );
                 } catch(e) {
                     // Role is probably already gone or an admin deleted the role. Shame.
