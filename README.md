@@ -18,7 +18,6 @@
 - Threshold Configuration (for the AI)
 - Configurable Flag Limits (before Mutes, Kicks, Tempbans, and Bans)
 - Configurable Mute / Tempban Lengths
-- Configurable Clear Record Interval
 - Configurable Blacklist / Whitelist (for words of your own)
 - The Ability to Enable/Disable Filters (at will)
 - Improved Audit Logs
