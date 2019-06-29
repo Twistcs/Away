@@ -4,7 +4,7 @@
 ---
 ##### **Away Support Discord / Try It Out:** https://discord.gg/hG5tqCG <br>
 ##### **Invite The Bot:** https://discordapp.com/api/oauth2/authorize?client_id=593282838976135169&permissions=8&scope=bot <br>
-##### **Check Out Our Websie (soon): ** https://awaybot.me/
+##### **Check Out Our Websie: ** https://awaybot.me/
 ---
 ### What is this?
 > The Away Moderation Bot was created for Discord Hack Week under the moderation category. It's a highly customizable open source bot for both developers looking to fork the project and server owners. The bot utilizes a trained AI to parse messages and determine if they are found to fall under one of the following categories: Identity Attack, Insult, Obscene, Servere Toxicity, Sexually Explicit, Threat, or Toxic. Also, an enhanced audit log feature for server owners is included.
@@ -78,17 +78,5 @@ __The commands here are meant for developers or server owners experiencing malfu
   - Usage: reset
 ---
 ### How do I install this beast of a bot?
-Poor Tempoary Explanation (A VIDEO WILL BE OUT IN A FEW HOURS WITH A FULL TUTORIAL):
-- Install NodeJS
-- Download the Bot
-- Run `npm i` in the root folder (where index.js is)
-- Put your Discord Bot token in the "token" field in configuration.js located in `away_interact/configuration.json`
-- Make a Firebase Account https://firebase.google.com/
-- Create A New Project
-- Create A Firestore Database
-- Create "guilds" collection in Firestore
-- Create a Service Key under Settings & Download it (---.json)
-- Rename Service Key to ServiceAccountKey.json
-- Place Service Key in `away_modules/`
-- Run bot by doing `node .` in the root folder (where index.js is)
-- Add the bot to your Discord server. (This is important, have the bot running to properly create log channels).
+You're in luck. We have a great video tutorial!
+https://youtu.be/RqJ4dyI8gNQ
