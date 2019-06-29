@@ -59,7 +59,7 @@ module.exports = {
                     .addField('**Server Information:**', 'Server ID: ' + guildInformation.id + '\nPrefix: ' + guildInformation.prefix)
                     .addField('**Commands:**', userCommands)
                     .addField('**Admin Commands:**', adminCommands)
-                    .addField('**Admin Commands (x2):**', adminCommands)
+                    .addField('**Admin Commands (x2):**', adminCommands2)
                     .addField('**Debug Commands:**', debugCommands)
                 );
             }
