@@ -77,6 +77,6 @@ __The commands here are meant for developers or server owners experiencing malfu
   - Description: Wipe and reset your server data for Away. **WARNING: THIS INCLUDES USER DATA.**
   - Usage: reset
 ---
-### How do I install this beast of a bot?
+### How do I fork and install this bot? (For Developers Only, Users Use Invite Link Above)
 You're in luck. We have a great video tutorial!
 https://youtu.be/RqJ4dyI8gNQ
