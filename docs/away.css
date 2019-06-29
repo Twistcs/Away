@@ -29,6 +29,9 @@ button:hover {
     cursor: pointer;
     background-color: #000;
 }
+a {
+    display: inline-block;
+}
 @media (max-width: 500px) {
     div {
         display: flex;
