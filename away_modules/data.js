@@ -10,7 +10,6 @@ const defaultGuild = {
         flagsBeforeBan: 20,
         muteLength: 600,
         tempbanLength: 86400,
-        clearRecordInterval: 86400,
         blacklistedKeywords: [],
         whitelistedKeywords: [],
         filters: {

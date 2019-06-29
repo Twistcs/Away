@@ -104,12 +104,18 @@ auditEvents.forEach(event => {
     });
 });
 
-// Update Server Count Every Minute
+// Swap between Server Count / Help
+let state = false;
 setInterval(_ => {
     // Update Bot Activity
-    Console.log('Updating bot activity status with server count.');
-    ClientInstance.user.setActivity(ClientInstance.guilds.size + ' server(s)', {type:'WATCHING'});
-}, 1000 * 60);
+    Console.log('Updating bot activity status.');
+    if(state) {
+        ClientInstance.user.setActivity(ClientInstance.guilds.size + ' server(s)', {type:'WATCHING'});
+    } else {
+        ClientInstance.user.setActivity('with the ^help command.', {type:'PLAYING'});
+    }
+    state = !state;
+}, 1000 * 15);
 
 ClientInstance.login(Configuration.token);
 

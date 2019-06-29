@@ -16,7 +16,8 @@
         "rolePushShift": "Away Moderation added/removed this role.",
         "deletionMessageMuted": "Your message has been deleted by the Away Smart Filter because __you are muted__.",
         "commandNotFound": "The command you're trying to access couldn't be found.",
-        "userNotFound": "We can't find the user you're trying to target."
+        "userNotFound": "We can't find the user you're trying to target.",
+        "unmuted": "You have been unmuted. Enjoy your freedom and be careful."
     },
     "userCommands": {
         "help": {
